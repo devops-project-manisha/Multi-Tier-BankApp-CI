@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bankappci-deployment
+  labels:
+    app: bankwebapp
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bankwebapp
+
+  template:
+    metadata:
+      labels:
+        app: bankwebapp
+    spec:
+      containers:
+        - name: bankapp-ci-container
+          image: devopsproject1.azurecr.io/bankapp-ci:latest
+          ports:
+            - containerPort: 8080

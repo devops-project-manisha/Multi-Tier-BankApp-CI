@@ -76,5 +76,6 @@ pipeline {
                 sh 'docker push $ACR_LOGIN_SERVER/${IMAGE_NAME}:${TAG}'
             }
         }
+        stage('')
     }
 }
