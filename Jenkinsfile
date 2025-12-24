@@ -37,5 +37,13 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        stage('Build Docker Image') {
+          steps {
+            sh 'docker build -t multitierbankapp:latest .'
+            }
+       }
+
+
+
     }
 }
