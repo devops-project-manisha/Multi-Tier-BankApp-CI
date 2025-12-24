@@ -76,6 +76,14 @@ pipeline {
                 sh 'docker push $ACR_LOGIN_SERVER/${IMAGE_NAME}:${TAG}'
             }
         }
-        stage('')
+        stage('Deploy to Kubernetes (AKS)') {
+            steps {
+                sh '''
+                kubectl apply -f deployment.yml
+                kubectl apply -f service.yml
+
+                '''
+            }
+        }
     }
 }
