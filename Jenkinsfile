@@ -1,10 +1,12 @@
 pipeline {
     agent any
+
     environment {
         SCANNER_HOME = tool 'SonarScanner'
         ACR_LOGIN_SERVER = "devopsproject1.azurecr.io"
-        IMAGE_NAME = 'bankapp-ci'   
-        TAG = 'v1.0'                
+        IMAGE_NAME = 'bankapp'
+        TAG = 'latest'
+    }
 
     stages {
         stage('Checkout') {
@@ -41,7 +43,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${IMAGE_NAME}:${TAG} .'
+                sh 'docker build -t bankapp:latest .'
             }
         }
 
@@ -75,5 +77,4 @@ pipeline {
             }
         }
     }
-}
 }
